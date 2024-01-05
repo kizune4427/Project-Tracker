@@ -22,25 +22,6 @@ def get_routes(request):
             'body': None,
             'description': 'Returns a single card object.'
         },
-        {
-            'Endpoint': '/api/cards',
-            'method': 'POST',
-            'body': {'body': ""},
-            'description': 'Creates new card with data sent in post request. '
-        },
-        {
-            'Endpoint': '/api/cards/<str:pk>',
-            'method': 'PUT',
-            'body': {'body': ""},
-            'description': 'Updates an existing card with data sent in post request. '
-        },
-        {
-            'Endpoint': '/api/cards/<str:pk>',
-            'method': 'DELETE',
-            'body': None,
-            'description': 'Deletes an existing card.'
-        },
-        
     ]
     return Response(routes)
 
@@ -48,4 +29,10 @@ def get_routes(request):
 def get_cards(request):
     cards = Card.objects.all()
     serializer = CardSerializer(cards, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def get_card(request, pk):
+    card = Card.objects.get(id=pk)
+    serializer = CardSerializer(card, many=False)
     return Response(serializer.data)
