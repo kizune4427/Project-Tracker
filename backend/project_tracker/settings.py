@@ -77,7 +77,6 @@ WSGI_APPLICATION = 'project_tracker.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 env = environ.Env()
-environ.Env.read_env()
 
 DATABASES = {
     'default': env.db(),
