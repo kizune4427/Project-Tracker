@@ -1,4 +1,1 @@
-__pycache__/
-.env
 *.log
-local_settings.py
